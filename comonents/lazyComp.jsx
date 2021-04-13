@@ -1,0 +1,1 @@
+export default ({childeren}) => <span>Lazy lazy</span>
