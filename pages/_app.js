@@ -1,17 +1,23 @@
 import "../styles/globals.css";
 import "antd/dist/antd.css";
-import Layout from "../comonents/layout";
+import Layout from "../components/layout";
+
+import { Provider } from "react-redux";
 
 import MyContext from "../lib/my-context";
 
-function MyApp({ Component, pageProps }) {
+import testHoc from "../lib/with-redux";
+
+function MyApp({ Component, pageProps, reduxStore }) {
   return (
-    <Layout>
-      <MyContext.Provider value="Melrose">
-        <Component {...pageProps} />
-      </MyContext.Provider>
-    </Layout>
+    <Provider store={reduxStore}>
+      <Layout>
+        <MyContext.Provider value="Melrose">
+          <Component {...pageProps} />
+        </MyContext.Provider>
+      </Layout>
+    </Provider>
   );
 }
 
-export default MyApp;
+export default testHoc(MyApp);
