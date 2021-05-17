@@ -5,14 +5,19 @@ import { useCallback, useState} from 'react'
 // import { Children } from "react";
 import Container from '../components/Container'
 
+import {withRouter} from 'next/router'
+
 // 注意这个 connect 是小写
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+
+import { logout } from '../store/store'
+
+import axios from 'axios'
 
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
 
 const { Header, Content, Footer } = Layout
-
 
 
 const gitHubIconStyle = {
@@ -30,22 +35,48 @@ const footerStyle = {
 
 const Comp = ({ color, children, style }) => <div style={{ color, ...style }}>{children}</div>
 
-const userDropDown = (
-  <Menu>
-    <Menu.Item>
-      <a href="#!">
-        登 出
-      </a>
-    </Menu.Item>
-  </Menu>
-)
 
-const myLayout = ({ children,user }) => {
+
+const myLayout = ({ children, user,logout,router }) => {
   const [search, setSearch] = useState('')
   const handleSearchChange = useCallback((event) => {
     setSearch(event.target.value)
   }, [setSearch])
-  const handleOnSearch = useCallback(()=>{},[])
+
+  const handleOnSearch = useCallback(() => { }, [])
+  
+  const handleLogout = useCallback(() => {
+    
+    // 这里要触发一个 action ，因为用户的状态是保存在 action 里面的
+    logout()
+    // this.forceUpdate();
+  }, [logout])
+
+
+  // 使用 withRouter 包含着组件里面，就可以拿到 router 的内容
+  const handleGotoOAuth = useCallback((e) => {
+    e.preventDefault()
+    axios.get(`/prepare-auth?url=${router.asPath}`).then(resp => {
+      if (resp.status === 200) {
+        location.href = publicRuntimeConfig.OAUTH_URL
+      } else {
+        console.log('prepare auth failed', resp);
+      }
+    }).catch(err => {
+      console.log('prepare auth failed', err);
+    })
+  }, [])
+  
+
+  const userDropDown = (
+    <Menu>
+      <Menu.Item>
+        <a onClick={handleLogout}>
+          登 出
+        </a>
+      </Menu.Item>
+    </Menu>
+  )
 
  return (<Layout>
    <Header>
@@ -68,14 +99,12 @@ const myLayout = ({ children,user }) => {
                  </Dropdown>
              ) : (
                  <Tooltip title='点击进行登录'>
-              <a href={ publicRuntimeConfig.OAUTH_URL}>
+              <a href={`/prepare-auth?url=${router.asPath}`} >
               <Avatar size={40} icon={<UserOutlined />} />
               </a>
               </Tooltip>
              )
            }
-
-           
        </div>
      </div>
        </Container>
@@ -130,4 +159,8 @@ export default connect(function mapState(state) {
   return {
    user:state.user
  }
-})(myLayout)
+},function mapReducer(dispatch) {
+  return {
+    logout:() => dispatch(logout())
+  }
+})(withRouter(myLayout))

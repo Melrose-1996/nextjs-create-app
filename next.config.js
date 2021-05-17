@@ -1,8 +1,5 @@
 const config = require("./config");
 
-const GITHUB_OAUTH_URL = "https://github.com/login/oauth/authorize";
-const SCOPE = "user";
-
 const configs = {
   // 编译文件的输出目录,当我们没有配置的时候是默认放在 .next 目录里面的。
   distDir: "dest",
@@ -50,7 +47,8 @@ const configs = {
   // 在 服务端渲染和客户端渲染都可以获取的配置
   publicRuntimeConfig: {
     staticFolder: "/static",
-    OAUTH_URL: `${GITHUB_OAUTH_URL}?client_id=${config.github.client_id}&scope=${SCOPE}`,
+    GITHUB_OAUTH_URL: config.OAUTH_URL,
+    OAUTH_URL: config.OAUTH_URL,
   },
 };
 
