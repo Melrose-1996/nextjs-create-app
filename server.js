@@ -18,6 +18,9 @@ const handle = app.getRequestHandler();
 // 里面可以传递一些相应的配置，但是本地传的话是没有必要
 const redis = new Redis();
 
+// api
+const api = require("./server/api");
+
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
@@ -38,6 +41,8 @@ app.prepare().then(() => {
 
   // 配置处理 github OAuth 的登录
   auth(server);
+  // 传入 API
+  api(server);
 
   // 服务端设置路由自动跳转到对应页面
   router.get("/a/:id", async (ctx) => {

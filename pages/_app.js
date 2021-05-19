@@ -11,6 +11,9 @@ import { useRouter } from "next/router";
 
 import PageLoading from "../components/PageLoading";
 
+// axios 请求
+import axios from "axios";
+
 import { Provider } from "react-redux";
 
 import MyContext from "../lib/my-context";
@@ -28,6 +31,11 @@ function MyApp({ Component, pageProps, reduxStore }) {
     router.events.on("routeChangeStart", handleStart);
     router.events.on("routeChangeComplete", handleComplete);
     router.events.on("routeChangeError", handleComplete);
+
+    // 搜索仓库
+    axios
+      .get("/github/search/respos?q=react")
+      .then((resp) => console.log(resp));
 
     return () => {
       router.events.off("routeChangeStart", handleStart);
