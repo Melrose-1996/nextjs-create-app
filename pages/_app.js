@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps, reduxStore }) {
 
     // 搜索仓库
     axios
-      .get("/github/search/respos?q=react")
+      .get("/github/search/repositories?q=react")
       .then((resp) => console.log(resp));
 
     return () => {

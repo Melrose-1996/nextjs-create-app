@@ -7,6 +7,7 @@ module.exports = (server) => {
     const path = ctx.path;
     if (path.startsWith("/github/")) {
       const githubAuth = ctx.session.githubAuth;
+      // 这里的不应该使用 path.replace 因为 path 是不包含 query的
       const githubPath = `${github_base_url}${ctx.url.replace(
         "/github/",
         "/"
@@ -15,9 +16,10 @@ module.exports = (server) => {
       const token = githubAuth && githubAuth.access_token;
       let headers = {};
       if (token) {
-        headers["Authorization"] = `${githubAuth.access_token} ${token}`;
+        // 注意：这里是 token_type ，必须要加上这个 access_token 不然回报 404 的错误
+        headers["Authorization"] = `${githubAuth.token_type} ${token}`;
       }
-      const result = await axios({
+      await axios({
         url: githubPath,
         method: "GET",
         headers,
@@ -26,10 +28,10 @@ module.exports = (server) => {
           //成功回调
           console.log(res);
           if (res.status === 200) {
-            ctx.body = result.data;
+            ctx.body = res.data;
             ctx.set("Content-Type", "application/json");
           } else {
-            ctx.status = result.status;
+            ctx.status = res.status;
             ctx.body = {
               success: false,
             };
