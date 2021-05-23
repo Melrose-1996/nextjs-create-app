@@ -3,16 +3,11 @@ import "antd/dist/antd.css";
 import App from "next/app";
 import Layout from "../components/layout";
 
-import Link from "next/link";
-
 // import Router from "next/router";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import PageLoading from "../components/PageLoading";
-
-// axios 请求
-import axios from "axios";
 
 import { Provider } from "react-redux";
 
@@ -33,9 +28,9 @@ function MyApp({ Component, pageProps, reduxStore }) {
     router.events.on("routeChangeError", handleComplete);
 
     // 搜索仓库
-    axios
-      .get("/github/search/repositories?q=react")
-      .then((resp) => console.log(resp));
+    // axios
+    //   .get("/github/search/repositories?q=react")
+    //   .then((resp) => console.log(resp));
 
     return () => {
       router.events.off("routeChangeStart", handleStart);
@@ -52,12 +47,6 @@ function MyApp({ Component, pageProps, reduxStore }) {
         <MyContext.Provider value="Melrose">
           {/* <PageLoading /> */}
           {loading ? <PageLoading /> : null}
-          <Link href="/">
-            <a>Index</a>
-          </Link>
-          <Link href="/detail">
-            <a>Detail</a>
-          </Link>
           <Component {...pageProps} />
         </MyContext.Provider>
       </Layout>

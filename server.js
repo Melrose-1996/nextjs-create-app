@@ -18,6 +18,9 @@ const handle = app.getRequestHandler();
 // 里面可以传递一些相应的配置，但是本地传的话是没有必要
 const redis = new Redis();
 
+// 引入 koaBody
+const koaBody = require("koa-body");
+
 // api
 const api = require("./server/api");
 
@@ -28,6 +31,10 @@ app.prepare().then(() => {
   // 使用 session 模块
   // keys 是用与给字符串加密的
   server.keys = ["Melrose develop Github App"];
+
+  // 使用 koa-body
+  server.use(koaBody());
+
   const SESSION_CONFIG = {
     // 设置在浏览器的 cookie 的 key 名字
     key: "rose",

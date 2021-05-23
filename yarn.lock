@@ -267,6 +267,13 @@
   resolved "https://registry.npm.taobao.org/@opentelemetry/context-base/download/@opentelemetry/context-base-0.14.0.tgz#c67fc20a4d891447ca1a855d7d70fa79a3533001"
   integrity sha1-xn/CCk2JFEfKGoVdfXD6eaNTMAE=
 
+"@types/formidable@^1.0.31":
+  version "1.2.2"
+  resolved "https://registry.nlark.com/@types/formidable/download/@types/formidable-1.2.2.tgz?cache=0&sync_timestamp=1620992322821&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fformidable%2Fdownload%2F%40types%2Fformidable-1.2.2.tgz#e690d60732ee9d3f0a441bc572c17409785b283c"
+  integrity sha1-5pDWBzLunT8KRBvFcsF0CXhbKDw=
+  dependencies:
+    "@types/node" "*"
+
 "@types/hoist-non-react-statics@^3.3.0":
   version "3.3.1"
   resolved "https://registry.npm.taobao.org/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
@@ -717,6 +724,16 @@ cluster-key-slot@^1.1.0:
   resolved "https://registry.npm.taobao.org/cluster-key-slot/download/cluster-key-slot-1.1.0.tgz#30474b2a981fb12172695833052bc0d01336d10d"
   integrity sha1-MEdLKpgfsSFyaVgzBSvA0BM20Q0=
 
+co-body@^5.1.1:
+  version "5.2.0"
+  resolved "https://registry.nlark.com/co-body/download/co-body-5.2.0.tgz#5a0a658c46029131e0e3a306f67647302f71c124"
+  integrity sha1-WgpljEYCkTHg46MG9nZHMC9xwSQ=
+  dependencies:
+    inflation "^2.0.0"
+    qs "^6.4.0"
+    raw-body "^2.2.0"
+    type-is "^1.6.14"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.nlark.com/co/download/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -1160,6 +1177,11 @@ foreach@^2.0.5:
   resolved "https://registry.npm.taobao.org/foreach/download/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
   integrity sha1-C+4AUBiusmDQo6865ljdATbsG5k=
 
+formidable@^1.1.1:
+  version "1.2.2"
+  resolved "https://registry.npm.taobao.org/formidable/download/formidable-1.2.2.tgz#bf69aea2972982675f00865342b982986f6b8dd9"
+  integrity sha1-v2muopcpgmdfAIZTQrmCmG9rjdk=
+
 fresh@~0.5.2:
   version "0.5.2"
   resolved "https://registry.nlark.com/fresh/download/fresh-0.5.2.tgz?cache=0&sync_timestamp=1618846949012&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffresh%2Fdownload%2Ffresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -1331,6 +1353,11 @@ ieee754@^1.1.13, ieee754@^1.1.4:
   version "1.2.1"
   resolved "https://registry.nlark.com/ieee754/download/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha1-jrehCmP/8l0VpXsAFYbRd9Gw01I=
+
+inflation@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/inflation/download/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
+  integrity sha1-i0F+R8KPklpFEz2RTKH9OJEH8w8=
 
 inherits@2.0.1:
   version "2.0.1"
@@ -1540,6 +1567,15 @@ keygrip@~1.1.0:
   integrity sha1-hxsWgdXhWcYqRFsMdLYV4JF+ciY=
   dependencies:
     tsscmp "1.0.6"
+
+koa-body@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npm.taobao.org/koa-body/download/koa-body-4.2.0.tgz?cache=0&sync_timestamp=1591921750472&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoa-body%2Fdownload%2Fkoa-body-4.2.0.tgz#37229208b820761aca5822d14c5fc55cee31b26f"
+  integrity sha1-NyKSCLggdhrKWCLRTF/FXO4xsm8=
+  dependencies:
+    "@types/formidable" "^1.0.31"
+    co-body "^5.1.1"
+    formidable "^1.1.1"
 
 koa-compose@^3.0.0:
   version "3.2.1"
@@ -2107,6 +2143,13 @@ punycode@^2.1.0:
   resolved "https://registry.npm.taobao.org/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
 
+qs@^6.4.0:
+  version "6.10.1"
+  resolved "https://registry.nlark.com/qs/download/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
+  integrity sha1-STFIL6jWR6Wqt5nFJx0hM7mB+2o=
+  dependencies:
+    side-channel "^1.0.4"
+
 querystring-es3@0.2.1, querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.npm.taobao.org/querystring-es3/download/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
@@ -2137,7 +2180,7 @@ randomfill@^1.0.3:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
 
-raw-body@2.4.1:
+raw-body@2.4.1, raw-body@^2.2.0:
   version "2.4.1"
   resolved "https://registry.npm.taobao.org/raw-body/download/raw-body-2.4.1.tgz#30ac82f98bb5ae8c152e67149dac8d55153b168c"
   integrity sha1-MKyC+Yu1rowVLmcUnayNVRU7Fow=
@@ -2673,6 +2716,15 @@ shell-quote@1.7.2:
   resolved "https://registry.npm.taobao.org/shell-quote/download/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha1-Z6fQLHbJ2iT5nSCAj8re0ODgS+I=
 
+side-channel@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/side-channel/download/side-channel-1.0.4.tgz?cache=0&sync_timestamp=1609270210432&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fside-channel%2Fdownload%2Fside-channel-1.0.4.tgz#efce5c8fdc104ee751b25c58d4290011fa5ea2cf"
+  integrity sha1-785cj9wQTudRslxY1CkAEfpeos8=
+  dependencies:
+    call-bind "^1.0.0"
+    get-intrinsic "^1.0.2"
+    object-inspect "^1.9.0"
+
 source-map@0.7.3:
   version "0.7.3"
   resolved "https://registry.npm.taobao.org/source-map/download/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
@@ -2937,7 +2989,7 @@ type-fest@^0.7.1:
   resolved "https://registry.nlark.com/type-fest/download/type-fest-0.7.1.tgz#8dda65feaf03ed78f0a3f9678f1869147f7c5c48"
   integrity sha1-jdpl/q8D7Xjwo/lnjxhpFH98XEg=
 
-type-is@^1.6.16:
+type-is@^1.6.14, type-is@^1.6.16:
   version "1.6.18"
   resolved "https://registry.nlark.com/type-is/download/type-is-1.6.18.tgz#4e552cd05df09467dcbc4ef739de89f2cf37c131"
   integrity sha1-TlUs0F3wlGfcvE73Od6J8s83wTE=

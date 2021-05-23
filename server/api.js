@@ -18,13 +18,14 @@ module.exports = (server) => {
           "Authorization"
         ] = `${githubAuth.token_type} ${githubAuth.access_token}`;
       }
+
+      // 引入了 koa-body ,这样我们就能通过 ctx.request.body 来获取 body，主要是用来处理 post 请求
       const result = await requestGithub(
         method,
         ctx.url.replace("/github/", "/"),
-        {},
+        ctx.request.body || {},
         headers
       );
-
       ctx.status = result.status;
       ctx.body = result.data;
     } else {
