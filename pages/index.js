@@ -1,6 +1,6 @@
 const api = require("../lib/api");
 
-import { Button } from "antd";
+import { Button, Tabs } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 
 import { connect } from "react-redux";
@@ -10,6 +10,19 @@ const { publicRuntimeConfig } = getConfig();
 
 import Repo from "../components/Repo";
 
+// 存储 tabs 栏的状态,以参数的形式传递下去
+import Router, { withRouter } from "next/router";
+
+import { useEffect } from "react";
+
+// 加入缓存策略
+import LRU from "lru-cache";
+
+const cache = new LRU({
+  // 表示最长的事件不去使用缓存在里面 key 的数据，就会把该数据删除
+  maxAge: 1000 * 60 * 10,
+});
+
 // const Index = ({ Component, pageProps, reduxStore }) => {
 //   // console.log(isLogin);
 //   // console.log(userRepos);
@@ -17,10 +30,43 @@ import Repo from "../components/Repo";
 //   return <span>去登录</span>;
 // };
 
-function Index({ userRepos, userStaredRepos, user }) {
-  console.log(user);
-  // console.log(userRepos);
-  // console.log(userStaredRepos);
+// 用于存储传递过来的数据
+// 注意：这个是在模块的全局作用域里面的，会一直存在的，永远都会有值
+// 所以对于服务端渲染，我们需要做层判断，不应该使用这个全局变量的值
+
+let userLocalRepos, userLocalStaredRepos;
+
+const isServer = typeof window === "undefined";
+
+function Index({ userRepos, userStaredRepos, user, router }) {
+  const tabKey = router.query.key || "1";
+
+  const handelTabChange = (activeKey) => {
+    Router.push(`/?key=${activeKey}`);
+  };
+
+  // 第一进来的时候，如果请求的有数据，就应该把数据缓存起来了
+  // 如果不传递参数，则之后在 mounted 的时候调用一次
+  useEffect(() => {
+    if (!isServer) {
+      // 防止值为 null 的时候也缓存
+      // if (userRepos) {
+      //   cache.set("userRepos", userRepos);
+      // }
+      // if (userStaredRepos) {
+      //   cache.set("userStaredRepos", userStaredRepos);
+      // }
+
+      // 这种方法是不管有没有发起请求获取到数据，一到时间就会刷新数据
+      userLocalRepos = userRepos;
+      userLocalStaredRepos = userStaredRepos;
+      setTimeout(() => {
+        userLocalRepos = null;
+        userLocalStaredRepos = null;
+      }, 1000 * 60 * 10);
+    }
+  }, [userRepos, userStaredRepos]);
+
   if (!user || !user.id) {
     return (
       <div className="root">
@@ -56,9 +102,18 @@ function Index({ userRepos, userStaredRepos, user }) {
         </p>
       </div>
       <div className="user-repos">
-        {userRepos.map((repo) => (
-          <Repo repo={repo} key={repo.id}></Repo>
-        ))}
+        <Tabs activeKey={tabKey} onChange={handelTabChange} animated={false}>
+          <Tabs.TabPane tab="你的仓库" key="1">
+            {userRepos.map((repo) => (
+              <Repo repo={repo} key={repo.id}></Repo>
+            ))}
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="你关注的仓库" key="2">
+            {userStaredRepos.map((repo) => (
+              <Repo repo={repo} key={repo.id}></Repo>
+            ))}
+          </Tabs.TabPane>
+        </Tabs>
       </div>
       <style jsx>
         {`
@@ -117,6 +172,21 @@ Index.getInitialProps = async (ctx) => {
   // 注意一旦登出了，我们需要做个请求的判断
   // 可以通过 ctx.req 和 ctx.res （node.js 对象，不会存在于浏览器运行环境里面的）来进行判断，但是在符合在服务端可以判断。在客户端进行判断，是没有 ctx 对象的。
 
+  if (!isServer) {
+    // if (cache.get("userRepos") && cache.get("userStaredRepos")) {
+    //   return {
+    //     userRepos: cache.get("userRepos"),
+    //     userStaredRepos: cache.get("userStaredRepos"),
+    //   };
+    // }
+    if (userLocalRepos && userLocalStaredRepos) {
+      return {
+        userRepos: userLocalRepos,
+        userStaredRepos: userLocalStaredRepos,
+      };
+    }
+  }
+
   // 发起请求，列出你所有的创建的仓库
   const userRepos = await api.request({ url: "/user/repos" }, ctx.req, ctx.res);
   // 被关注的仓库
@@ -133,8 +203,11 @@ Index.getInitialProps = async (ctx) => {
   };
 };
 
-export default connect(function mapState(state) {
-  return {
-    user: state.user,
-  };
-})(Index);
+// 注意在写 withRouter 和 connect 的时候，需要把 withRouter 放在外面
+export default withRouter(
+  connect(function mapState(state) {
+    return {
+      user: state.user,
+    };
+  })(Index)
+);
