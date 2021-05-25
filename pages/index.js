@@ -36,6 +36,8 @@ const cache = new LRU({
 
 let userLocalRepos, userLocalStaredRepos;
 
+let userFlag;
+
 const isServer = typeof window === "undefined";
 
 function Index({ userRepos, userStaredRepos, user, router }) {
@@ -160,6 +162,14 @@ function Index({ userRepos, userStaredRepos, user, router }) {
 
 // 注意这里是 ctx 而不是 {ctx}
 Index.getInitialProps = async (ctx) => {
+  if (!userFlag) {
+    return {};
+  }
+  // if (ctx.response.status == 401) {
+  // return {};
+  // }
+  // console.log(ctx, 3333);
+  // return {};
   // 报 Error: connect ECONNREFUSED 127.0.0.1:80 的错误
   // 如果是在浏览器里面发送的，会根据我们提供的路径会自动加上我们当前网站的域名（就是http://localhost:3000/）所以它完整请求路径就是 http://localhost:3000/github/search/repositories?q=react
   // 如果是在服务端渲染的时候进行执行的话，所以没有浏览器里面的域名的，这个时候请求的路径自动在 axios 里面增加的 http://127.0.0.1（默认80端口）/github/search/repositories?q=react，这个时候就不对了，我们 80 端口没有启动，也不是我们想请求的地址
@@ -206,6 +216,7 @@ Index.getInitialProps = async (ctx) => {
 // 注意在写 withRouter 和 connect 的时候，需要把 withRouter 放在外面
 export default withRouter(
   connect(function mapState(state) {
+    userFlag = state.user;
     return {
       user: state.user,
     };
