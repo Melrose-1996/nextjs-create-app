@@ -162,7 +162,7 @@ function Index({ userRepos, userStaredRepos, user, router }) {
 
 // 注意这里是 ctx 而不是 {ctx}
 Index.getInitialProps = async (ctx) => {
-  if (!userFlag) {
+  if (!userFlag || !userFlag.id) {
     return {};
   }
   // if (ctx.response.status == 401) {
