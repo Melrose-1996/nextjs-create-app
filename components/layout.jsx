@@ -150,6 +150,9 @@ const myLayout = ({ children, user, logout, router }) => {
       }
    `}</style>
     <style jsx global>{`
+     html {
+        overflow-y: overlay; 
+      }
      #__next {
        height: 100%;
      }

@@ -1,0 +1,167 @@
+webpackHotUpdate_N_E("pages/detail",{
+
+/***/ "./pages/detail/index.js":
+/*!*******************************!*\
+  !*** ./pages/detail/index.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_with_repo_basic_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/with-repo-basic.jsx */ "./components/with-repo-basic.jsx");
+
+var _jsxFileName = "D:\\lls\\chenzhengquan\\Desktop\\muke-study\\nextjs-create-app\\pages\\detail\\index.js";
+
+
+function Detail() {
+  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxDEV"])("span", {
+    children: "Detail pages"
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 3,
+    columnNumber: 10
+  }, this);
+}
+
+_c = Detail;
+Detail.getInitialProps = async;
+/* harmony default export */ __webpack_exports__["default"] = (_c2 = Object(_components_with_repo_basic_jsx__WEBPACK_IMPORTED_MODULE_1__["default"])(Detail)); // import Repo from "../../components/Repo";
+// import Link from "next/link";
+// import api from "../../lib/api";
+// import { withRouter } from "next/router";
+// // 这样我们把键值对的形式映射成了一个字符串
+// function makeQuery(queryObj) {
+//   // 遍历这个 obj
+//   const query = Object.entries(queryObj)
+//     .reduce((result, entry) => {
+//       result.push(entry.join("="));
+//       return result;
+//     }, [])
+//     .join("&");
+//   return `?${query}`;
+// }
+// function Detail({ repoBasic, router }) {
+//   const query = makeQuery(router.query);
+//   return (
+//     <div className="root">
+//       <div className="repo-basic">
+//         <Repo repo={repoBasic} />
+//         <div className="tabs">
+//           <Link href={`/detail${query}`}>
+//             <a className="tab index">Readme</a>
+//           </Link>
+//           <Link href={`/detail/issues${query}`}>
+//             <a className="tab issues">Issues</a>
+//           </Link>
+//         </div>
+//       </div>
+//       <div>Readme</div>
+//       <style jsx>{`
+//         .root {
+//           padding-top: 20px;
+//         }
+//         .repo-basic {
+//           padding: 20px;
+//           border: 1px solid #eee;
+//           margin-bottom: 20px;
+//           border-radius: 5px;
+//         }
+//         .tab + .tab {
+//           margin-left: 20px;
+//         }
+//       `}</style>
+//     </div>
+//   );
+// }
+// console.log(Detail.prop);
+// Detail.getInitialProps = async (ctx) => {
+//   console.log(ctx.query);
+//   const { owner, name } = ctx.query;
+//   //   return {
+//   //     name: "melrose",
+//   //   };
+//   // return new Promise((resolve) => {
+//   //   setTimeout(() => {
+//   //     resolve({});
+//   //   }, 3000);
+//   // });
+//   const repoBasic = await api.request(
+//     { url: `/repos/${owner}/${name}` },
+//     ctx.req,
+//     ctx.res
+//   );
+//   return {
+//     repoBasic: repoBasic.data,
+//   };
+// };
+// export default withRouter(Detail);
+
+var _c, _c2;
+
+$RefreshReg$(_c, "Detail");
+$RefreshReg$(_c2, "%default%");
+
+;
+    var _a, _b;
+    // Legacy CSS implementations will `eval` browser code in a Node.js context
+    // to extract CSS. For backwards compatibility, we need to check we're in a
+    // browser context before continuing.
+    if (typeof self !== 'undefined' &&
+        // AMP / No-JS mode does not inject these helpers:
+        '$RefreshHelpers$' in self) {
+        var currentExports = module.__proto__.exports;
+        var prevExports = (_b = (_a = module.hot.data) === null || _a === void 0 ? void 0 : _a.prevExports) !== null && _b !== void 0 ? _b : null;
+        // This cannot happen in MainTemplate because the exports mismatch between
+        // templating and execution.
+        self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
+        // A module can be accepted automatically based on its exports, e.g. when
+        // it is a Refresh Boundary.
+        if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
+            // Save the previous exports on update so we can compare the boundary
+            // signatures.
+            module.hot.dispose(function (data) {
+                data.prevExports = currentExports;
+            });
+            // Unconditionally accept an update to this module, we'll check if it's
+            // still a Refresh Boundary later.
+            module.hot.accept();
+            // This field is set when the previous version of this module was a
+            // Refresh Boundary, letting us know we need to check for invalidation or
+            // enqueue an update.
+            if (prevExports !== null) {
+                // A boundary can become ineligible if its exports are incompatible
+                // with the previous exports.
+                //
+                // For example, if you add/remove/change exports, we'll want to
+                // re-execute the importing modules, and force those components to
+                // re-render. Similarly, if you convert a class component to a
+                // function, we want to invalidate the boundary.
+                if (self.$RefreshHelpers$.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)) {
+                    module.hot.invalidate();
+                }
+                else {
+                    self.$RefreshHelpers$.scheduleUpdate();
+                }
+            }
+        }
+        else {
+            // Since we just executed the code for the module, it's possible that the
+            // new exports made it ineligible for being a boundary.
+            // We only care about the case when we were _previously_ a boundary,
+            // because we already accepted this update (accidental side effect).
+            var isNoLongerABoundary = prevExports !== null;
+            if (isNoLongerABoundary) {
+                module.hot.invalidate();
+            }
+        }
+    }
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/next/dist/compiled/webpack/harmony-module.js */ "./node_modules/next/dist/compiled/webpack/harmony-module.js")(module)))
+
+/***/ })
+
+})
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9fTl9FLy4vcGFnZXMvZGV0YWlsL2luZGV4LmpzIl0sIm5hbWVzIjpbIkRldGFpbCIsImdldEluaXRpYWxQcm9wcyIsImFzeW5jIiwid2l0aFJlcG8iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTs7QUFDQSxTQUFTQSxNQUFULEdBQWtCO0FBQ2hCLHNCQUFPO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFVBQVA7QUFDRDs7S0FGUUEsTTtBQUlUQSxNQUFNLENBQUNDLGVBQVAsR0FBeUJDLEtBQXpCO0FBRWUscUVBQUFDLCtFQUFRLENBQUNILE1BQUQsQ0FBdkIsRSxDQUVBO0FBQ0E7QUFFQTtBQUVBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBIiwiZmlsZSI6InN0YXRpYy93ZWJwYWNrL3BhZ2VzL2RldGFpbC4xN2E4YmZjZDRmNjVkY2FjYTBhMi5ob3QtdXBkYXRlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHdpdGhSZXBvIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL3dpdGgtcmVwby1iYXNpYy5qc3hcIjtcclxuZnVuY3Rpb24gRGV0YWlsKCkge1xyXG4gIHJldHVybiA8c3Bhbj5EZXRhaWwgcGFnZXM8L3NwYW4+O1xyXG59XHJcblxyXG5EZXRhaWwuZ2V0SW5pdGlhbFByb3BzID0gYXN5bmM7XHJcblxyXG5leHBvcnQgZGVmYXVsdCB3aXRoUmVwbyhEZXRhaWwpO1xyXG5cclxuLy8gaW1wb3J0IFJlcG8gZnJvbSBcIi4uLy4uL2NvbXBvbmVudHMvUmVwb1wiO1xyXG4vLyBpbXBvcnQgTGluayBmcm9tIFwibmV4dC9saW5rXCI7XHJcblxyXG4vLyBpbXBvcnQgYXBpIGZyb20gXCIuLi8uLi9saWIvYXBpXCI7XHJcblxyXG4vLyBpbXBvcnQgeyB3aXRoUm91dGVyIH0gZnJvbSBcIm5leHQvcm91dGVyXCI7XHJcblxyXG4vLyAvLyDov5nmoLfmiJHku6zmiorplK7lgLzlr7nnmoTlvaLlvI/mmKDlsITmiJDkuobkuIDkuKrlrZfnrKbkuLJcclxuLy8gZnVuY3Rpb24gbWFrZVF1ZXJ5KHF1ZXJ5T2JqKSB7XHJcbi8vICAgLy8g6YGN5Y6G6L+Z5LiqIG9ialxyXG4vLyAgIGNvbnN0IHF1ZXJ5ID0gT2JqZWN0LmVudHJpZXMocXVlcnlPYmopXHJcbi8vICAgICAucmVkdWNlKChyZXN1bHQsIGVudHJ5KSA9PiB7XHJcbi8vICAgICAgIHJlc3VsdC5wdXNoKGVudHJ5LmpvaW4oXCI9XCIpKTtcclxuLy8gICAgICAgcmV0dXJuIHJlc3VsdDtcclxuLy8gICAgIH0sIFtdKVxyXG4vLyAgICAgLmpvaW4oXCImXCIpO1xyXG4vLyAgIHJldHVybiBgPyR7cXVlcnl9YDtcclxuLy8gfVxyXG5cclxuLy8gZnVuY3Rpb24gRGV0YWlsKHsgcmVwb0Jhc2ljLCByb3V0ZXIgfSkge1xyXG4vLyAgIGNvbnN0IHF1ZXJ5ID0gbWFrZVF1ZXJ5KHJvdXRlci5xdWVyeSk7XHJcbi8vICAgcmV0dXJuIChcclxuLy8gICAgIDxkaXYgY2xhc3NOYW1lPVwicm9vdFwiPlxyXG4vLyAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlcG8tYmFzaWNcIj5cclxuLy8gICAgICAgICA8UmVwbyByZXBvPXtyZXBvQmFzaWN9IC8+XHJcbi8vICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJ0YWJzXCI+XHJcbi8vICAgICAgICAgICA8TGluayBocmVmPXtgL2RldGFpbCR7cXVlcnl9YH0+XHJcbi8vICAgICAgICAgICAgIDxhIGNsYXNzTmFtZT1cInRhYiBpbmRleFwiPlJlYWRtZTwvYT5cclxuLy8gICAgICAgICAgIDwvTGluaz5cclxuLy8gICAgICAgICAgIDxMaW5rIGhyZWY9e2AvZGV0YWlsL2lzc3VlcyR7cXVlcnl9YH0+XHJcbi8vICAgICAgICAgICAgIDxhIGNsYXNzTmFtZT1cInRhYiBpc3N1ZXNcIj5Jc3N1ZXM8L2E+XHJcbi8vICAgICAgICAgICA8L0xpbms+XHJcbi8vICAgICAgICAgPC9kaXY+XHJcbi8vICAgICAgIDwvZGl2PlxyXG4vLyAgICAgICA8ZGl2PlJlYWRtZTwvZGl2PlxyXG4vLyAgICAgICA8c3R5bGUganN4PntgXHJcbi8vICAgICAgICAgLnJvb3Qge1xyXG4vLyAgICAgICAgICAgcGFkZGluZy10b3A6IDIwcHg7XHJcbi8vICAgICAgICAgfVxyXG4vLyAgICAgICAgIC5yZXBvLWJhc2ljIHtcclxuLy8gICAgICAgICAgIHBhZGRpbmc6IDIwcHg7XHJcbi8vICAgICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAjZWVlO1xyXG4vLyAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuLy8gICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuLy8gICAgICAgICB9XHJcbi8vICAgICAgICAgLnRhYiArIC50YWIge1xyXG4vLyAgICAgICAgICAgbWFyZ2luLWxlZnQ6IDIwcHg7XHJcbi8vICAgICAgICAgfVxyXG4vLyAgICAgICBgfTwvc3R5bGU+XHJcbi8vICAgICA8L2Rpdj5cclxuLy8gICApO1xyXG4vLyB9XHJcblxyXG4vLyBjb25zb2xlLmxvZyhEZXRhaWwucHJvcCk7XHJcblxyXG4vLyBEZXRhaWwuZ2V0SW5pdGlhbFByb3BzID0gYXN5bmMgKGN0eCkgPT4ge1xyXG4vLyAgIGNvbnNvbGUubG9nKGN0eC5xdWVyeSk7XHJcbi8vICAgY29uc3QgeyBvd25lciwgbmFtZSB9ID0gY3R4LnF1ZXJ5O1xyXG4vLyAgIC8vICAgcmV0dXJuIHtcclxuLy8gICAvLyAgICAgbmFtZTogXCJtZWxyb3NlXCIsXHJcbi8vICAgLy8gICB9O1xyXG4vLyAgIC8vIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSkgPT4ge1xyXG4vLyAgIC8vICAgc2V0VGltZW91dCgoKSA9PiB7XHJcbi8vICAgLy8gICAgIHJlc29sdmUoe30pO1xyXG4vLyAgIC8vICAgfSwgMzAwMCk7XHJcbi8vICAgLy8gfSk7XHJcbi8vICAgY29uc3QgcmVwb0Jhc2ljID0gYXdhaXQgYXBpLnJlcXVlc3QoXHJcbi8vICAgICB7IHVybDogYC9yZXBvcy8ke293bmVyfS8ke25hbWV9YCB9LFxyXG4vLyAgICAgY3R4LnJlcSxcclxuLy8gICAgIGN0eC5yZXNcclxuLy8gICApO1xyXG4vLyAgIHJldHVybiB7XHJcbi8vICAgICByZXBvQmFzaWM6IHJlcG9CYXNpYy5kYXRhLFxyXG4vLyAgIH07XHJcbi8vIH07XHJcblxyXG4vLyBleHBvcnQgZGVmYXVsdCB3aXRoUm91dGVyKERldGFpbCk7XHJcbiJdLCJzb3VyY2VSb290IjoiIn0=
