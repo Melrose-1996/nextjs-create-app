@@ -18,6 +18,8 @@ import { useEffect } from "react";
 // 加入缓存策略
 import LRU from "lru-cache";
 
+import { setCache } from "../lib/repo-basic-cache";
+
 const cache = new LRU({
   // 表示最长的事件不去使用缓存在里面 key 的数据，就会把该数据删除
   maxAge: 1000 * 60 * 10,
@@ -68,6 +70,14 @@ function Index({ userRepos, userStaredRepos, user, router }) {
       }, 1000 * 60 * 10);
     }
   }, [userRepos, userStaredRepos]);
+
+  useEffect(() => {
+    // 服务端渲染对于这段代码是没有必要去执行的，如果重复执行会导致我们的内存没有意义的使用，这段是跟用户的搜索有关的，跟服务端整体渲染是没有关系的，所以需要屏蔽掉。
+    if (!isServer) {
+      setCache(userRepos);
+      setCache(userStaredRepos);
+    }
+  });
 
   if (!user || !user.id) {
     return (

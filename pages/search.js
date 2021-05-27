@@ -1,4 +1,4 @@
-import { useCallback, memo, isValidElement } from "react";
+import { useCallback, memo, isValidElement, useEffect } from "react";
 
 import { withRouter } from "next/router";
 
@@ -18,6 +18,8 @@ import Link from "next/link";
 const api = require("../lib/api");
 
 import Repo from "../components/Repo";
+
+import { setArray } from "../lib/repo-basic-cache";
 
 // 搜索条件
 const LANGUAGES = ["JavaScript", "HTML", "CSS", "TypeScript", "Java", "Rust"];
@@ -79,6 +81,7 @@ const FilterLink = memo(({ name, query, lang, sort, order, page }) => {
 
 const noop = () => {};
 
+const isServer = typeof window === "undefined";
 function Search({ router, repos }) {
   console.log(repos);
   // 注意这些数据都没有在 state 里面去创建，希望是这些页面显示的内容完全根据 url 来定的，使得整个组件是个受控的组件，不会产生任何的副作用。
@@ -86,6 +89,13 @@ function Search({ router, repos }) {
   // 该路由是 withRouter 传递过来的
   const { ...querys } = router.query;
   const { sort, order, lang, page } = router.query;
+
+  // 执行这个插入，每次页面渲染的时候，都会去调用它
+  // 需要判断是否是服务端渲染
+  // 服务端渲染对于这段代码是没有必要去执行的，如果重复执行会导致我们的内存没有意义的使用，这段是跟用户的搜索有关的，跟服务端整体渲染是没有关系的，所以需要屏蔽掉。
+  useEffect(() => {
+    if (!isServer) setArray(repos.items);
+  });
 
   // 用于拼接路径的方法
   // 注意语言变化了，但是当时选中了一个排序方式，在语言变化的时候，不应该变化其排序，所以要把排序的参数放在 query 里面。

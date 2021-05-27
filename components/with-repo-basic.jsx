@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Repo from "./Repo";
 import Link from "next/link";
 
@@ -5,6 +6,9 @@ import api from "../lib/api";
 
 import { withRouter } from "next/router";
 
+import { getCache, setCache } from '../lib/repo-basic-cache'
+
+const isServer = typeof window === 'undefined'
 
 
 
@@ -22,6 +26,10 @@ export default function withRepo(Comp, type = 'index') {
     }
 
     function WithDetail({ repoBasic, router, ...rest }) {
+        useEffect(() => {
+            // 服务端渲染对于这段代码是没有必要去执行的，如果重复执行会导致我们的内存没有意义的使用，这段是跟用户的搜索有关的，跟服务端整体渲染是没有关系的，所以需要屏蔽掉。
+            if (!isServer) setCache(repoBasic)
+        })
         const query = makeQuery(router.query);
         return (
             <div className="root">
@@ -57,19 +65,35 @@ export default function withRepo(Comp, type = 'index') {
             </div>
         );
     }
-
+    // 注意在客户端第一次渲染的时候，是不会调用这个 getInitialProps ，所以不会在里面进行 cache
     WithDetail.getInitialProps = async (ctx) => {
         const { owner, name } = ctx.query;
+
+        const full_name = `${owner}/${name}`
+
+
+
+        let pageData = {}
+        if (Comp.getInitialProps) {
+            pageData = await Comp.getInitialProps(ctx)
+        }
+
+
+        if (getCache(full_name)) {
+            return {
+                repoBasic: getCache(full_name),
+                ...pageData
+            };
+        }
+
         const repoBasic = await api.request(
             { url: `/repos/${owner}/${name}` },
             ctx.req,
             ctx.res
         );
 
-        let pageData = {}
-        if (Comp.getInitialProps) {
-            pageData = await Comp.getInitialProps(ctx)
-        }
+
+
         return {
             repoBasic: repoBasic.data,
             ...pageData
