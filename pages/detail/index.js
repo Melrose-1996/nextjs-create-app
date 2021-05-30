@@ -1,11 +1,36 @@
 import withRepo from "../../components/with-repo-basic.jsx";
-function Detail({ text }) {
-  return <span>Detail pages{text}</span>;
+
+import api from "../../lib/api";
+
+import dynamic from "next/dynamic";
+
+// 这样把 detail 的代码分离出来的好处就是，不会让 detail 变化影响到整体不变的 hash 值，而整体代码块大一点的话，只要 hash 值不变，都可以保存到起来。
+// 当我们 loaded 这个 MDRenderer 的时候，它是一个异步的过程，loading 的时候一直在等待的，当我们传入第二参数配置，让它在 loading 之前显示的样式
+const MDRenderer = dynamic(() => import("../../components/MarkFdownRenderer"), {
+  loading: () => <p>Loading....</p>,
+});
+
+function Detail({ readme }) {
+  // atob 注意在浏览器渲染的时候，window 是有这个方法的，但是在服务端渲染的时候 js 是没有这个方法的
+  // 需要兼容是需要 import 一个公共模块，使得服务端和客户端都可以使用这些公共的方法
+  // console.log(atob(readme.content), "++++++++++");
+
+  // 注意这个 div 里面不能写任何东西
+  return <MDRenderer content={readme.content} isBase64={true} />;
 }
 
-Detail.getInitialProps = async () => {
+Detail.getInitialProps = async (ctx) => {
+  const { owner, name } = ctx.query;
+
+  const readmeResp = await api.request(
+    {
+      url: `/repos/${owner}/${name}/readme`,
+    },
+    ctx.req,
+    ctx.res
+  );
   return {
-    text: 123,
+    readme: readmeResp.data,
   };
 };
 

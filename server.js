@@ -24,6 +24,11 @@ const koaBody = require("koa-body");
 // api
 const api = require("./server/api");
 
+const atob = require('atob')
+
+// 创建 node.js 全局增加一个 atob 的方法
+global.atob = atob
+
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();

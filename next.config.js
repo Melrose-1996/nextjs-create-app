@@ -1,4 +1,8 @@
+const webpack = require("webpack");
+
 const config = require("./config");
+
+const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 
 const configs = {
   // 编译文件的输出目录,当我们没有配置的时候是默认放在 .next 目录里面的。
@@ -23,8 +27,11 @@ const configs = {
     // 返回 null 使用默认的 unique id
     return null;
   },
+
+  // webpack 搜索跟 .locale 和 .moment js 相关的一些文件忽略掉
   // 手动修改 webpack config - 默认去修改 nextjs 的默认的 webpack 的配置的
   webpack(config, options) {
+    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
     return config;
   },
   // 修改 webpackDevMiddleware 配置
@@ -50,6 +57,19 @@ const configs = {
     GITHUB_OAUTH_URL: config.OAUTH_URL,
     OAUTH_URL: config.OAUTH_URL,
   },
+
+  analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
+  // 这个 reportFilename 就是把我们的分析报告写在该位置
+  bundleAnalyzerConfig: {
+    server: {
+      analyzerMode: "static",
+      reportFilename: "../bundles/server.html",
+    },
+    browser: {
+      analyzerMode: "static",
+      reportFilename: "../bundles/client.html",
+    },
+  },
 };
 
-module.exports = configs;
+module.exports = withBundleAnalyzer(configs);

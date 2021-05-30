@@ -71,14 +71,6 @@ function Index({ userRepos, userStaredRepos, user, router }) {
     }
   }, [userRepos, userStaredRepos]);
 
-  useEffect(() => {
-    // 服务端渲染对于这段代码是没有必要去执行的，如果重复执行会导致我们的内存没有意义的使用，这段是跟用户的搜索有关的，跟服务端整体渲染是没有关系的，所以需要屏蔽掉。
-    if (!isServer) {
-      setCache(userRepos);
-      setCache(userStaredRepos);
-    }
-  });
-
   if (!user || !user.id) {
     return (
       <div className="root">
@@ -100,6 +92,14 @@ function Index({ userRepos, userStaredRepos, user, router }) {
       </div>
     );
   }
+
+  useEffect(() => {
+    // 服务端渲染对于这段代码是没有必要去执行的，如果重复执行会导致我们的内存没有意义的使用，这段是跟用户的搜索有关的，跟服务端整体渲染是没有关系的，所以需要屏蔽掉。
+    if (!isServer) {
+      setCache(userRepos);
+      setCache(userStaredRepos);
+    }
+  });
 
   return (
     <div className="root">
